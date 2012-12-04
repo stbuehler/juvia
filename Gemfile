@@ -20,6 +20,11 @@ gem 'nokogiri'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+# Deploy with fastcgi
+group :fastcgi do
+  gem "fcgi", "~> 0.9.2", :require => false
+end
+
 # To use debugger
 # gem 'ruby-debug'
 gem 'bcrypt-ruby'
