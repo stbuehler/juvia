@@ -31,7 +31,9 @@ class Admin::CommentsController < ApplicationController
   end
 
   def preview
-    render :text => ApplicationHelper.render_markdown(params[:content])
+    @comment = Comment.find(params[:id])
+    authorize! :update, @comment
+    render :text => @comment.site.render_comment(params[:content])
   end
 
   def approve

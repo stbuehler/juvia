@@ -64,6 +64,10 @@ class Comment < ActiveRecord::Base
     call_akismet('submit-spam', akismet_params)
   end
 
+  def render
+    site.render_comment(content)
+  end
+
 private
   AKISMET_HEADERS = {
     'User-Agent' => "Juvia | Rails/#{Rails.version}",

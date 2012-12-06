@@ -46,6 +46,14 @@ class Site < ActiveRecord::Base
     topics.order("last_posted_at DESC")
   end
 
+  def render_comment(str)
+    BlueCloth.new(str, :escape_html => true, :strict_mode => false).to_html.html_safe
+  end
+
+  def render_engine_link
+    '<a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>'.html_safe
+  end
+
 private
   def nullify_blank_fields
     self.url = nil if url.blank?

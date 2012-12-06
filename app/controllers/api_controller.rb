@@ -89,6 +89,12 @@ class ApiController < ApplicationController
   def preview_comment
     prepare!([], [:html, :js, :json])
     @content = decompress(params[:content])
+    @site = Site.find_by_key(@site_key)
+    if @site
+      render
+    else
+      render :partial => 'site_not_found'
+    end
   end
 
   def list_topics

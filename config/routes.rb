@@ -7,12 +7,12 @@ Juvia::Application.routes.draw do
   namespace :admin do
     resources :comments do
       collection do
-        get :preview
         get :import, :to => 'comments#new_import'
         post :import, :to => 'comments#import'
       end
       member do
         put :approve
+        get :preview
       end
     end
     resources :sites do
