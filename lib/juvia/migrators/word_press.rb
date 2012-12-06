@@ -1,7 +1,7 @@
 begin
   require 'sequel'
 rescue LoadError
-  STDERR.puts "Could not load sequel gem, so WordPress import will not work."
+  # STDERR.puts "Could not load sequel gem, so WordPress import will not work."
 end
 require 'fileutils'
 require 'yaml'
