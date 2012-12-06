@@ -25,10 +25,6 @@ class ApiController < ApplicationController
   def show_topic
     @topic_title = params[:topic_title]
     @topic_url   = params[:topic_url]
-    @include_base = get_boolean_param(:include_base, true)
-    @include_css  = get_boolean_param(:include_css, true)
-    # Must come before error checking because the error
-    # templates depend on @include_base/@include_css.
 
     if params.has_key?('comment_order')
       @comment_order = params[:comment_order]

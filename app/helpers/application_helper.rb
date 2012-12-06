@@ -71,4 +71,14 @@ module ApplicationHelper
       buffer
     end
   end
+
+  def javascript_url(source)
+    uri = URI.parse(root_url)
+    uri.merge(javascript_path(source))
+  end
+
+  def stylesheet_url(source)
+    uri = URI.parse(root_url)
+    uri.merge(stylesheet_path(source))
+  end
 end

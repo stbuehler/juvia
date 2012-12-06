@@ -50,12 +50,6 @@ before the JavaScript works properly.</p>
 <li>The <strong>topic_title</strong> specifies a title for topic_url.
     If a new topic needs to be created, then it will be given this title. Otherwise,
     the value of topic_title is unused.</li>
-<li><strong>include_base</strong> (optional, boolean, default: true) specifies whether the base Juvia
-    runtime JavaScript code should be loaded. Useful for saving bandwidth if it has already been
-    loaded before. See <a href="#ajax_support">AJAX support</a> for more information.</li>
-<li><strong>include_css</strong> (optional, boolean, default: true) specifies whether the
-    Juvia CSS should be loaded. Useful for saving bandwidth if it has already been
-    loaded before. See <a href="#ajax_support">AJAX support</a> for more information.</li>
 <li><strong>comment_order</strong> (optional, 'latest-first' or 'earliest-first', default: 'latest-first')
     specifies whether the comments should be displayed with the latest post at the top, or with the
     earliest post at the top instead. Latest-first is Juvia's default sort order.</li>
@@ -87,20 +81,6 @@ execute the Juvia embedding code again (with possibly different options) and eve
 will work as expected. It is even possible to <a href="#embed_multiple">embed multiple Juvia
 comment pages on a single web page</a>.</p>
 
-<p>However the second time you load a Juvia comment page may result in some
-things to be redundantly loaded again. To see what's redundant, let's consider what
-a Juvia comment page consists of:</p>
-<ol>
-<li>The base Juvia runtime code in JavaScript.</li>
-<li>The Juvia CSS.</li>
-<li>The actual comments.</li>
-</ol>
-
-<p>Items 1 and 2 are already loaded the first time you load a Juvia comment page.
-You can omit them by setting the <strong>include_base</strong> and
-<strong>include_css</strong> options to false.</p>
-
 <h3 id="embed_multiple">Embedding multiple comment pages on a single web page</h3>
 <p>It is possible to embed multiple Juvia comment pages on a single web page. Just
-specify different container paths for each of them. And just as described in
-<a href="#ajax_support">AJAX support</a>, the base runtime code and the CSS are redundantly loaded the second time, so you can omit them by settings <em>include_base</em> and <em>include_css</em> to false.</p>
+specify different container paths for each of them.
