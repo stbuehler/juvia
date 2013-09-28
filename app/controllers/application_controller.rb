@@ -28,7 +28,7 @@ private
   
   def redirect_back(default_url = nil)
     redirect_to(session.delete(:return_to) || :back)
-  rescue RedirectBackError
+  rescue ActionController::RedirectBackError
     redirect_to(default_url || root_path)
   end
 
