@@ -174,7 +174,7 @@ describe Admin::SitesController do
         # specifies that the Site created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Site.any_instance.should_receive(:update_attributes).with({ 'name' => 'bar' }, :as => :admin)
+        Site.any_instance.should_receive(:update_attributes).with({ 'name' => 'bar' })
         put :update, :id => site.id, :site => { 'name' => 'bar' }
       end
 

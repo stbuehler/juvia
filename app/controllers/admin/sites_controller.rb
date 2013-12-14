@@ -59,7 +59,7 @@ class Admin::SitesController < ApplicationController
   # POST /admin/sites.json
   def create
     authorize! :create, Site
-    @site = Site.new(params[:site], :as => current_user.role)
+    @site = Site.new(create_site_params)
     @site.user = current_user
 
     respond_to do |format|
@@ -80,7 +80,7 @@ class Admin::SitesController < ApplicationController
     authorize! :update, @site
 
     respond_to do |format|
-      if @site.update_attributes(params[:site], :as => current_user.role)
+      if @site.update_attributes(update_site_params)
         format.html { redirect_to [:admin, @site], :notice => 'Site was successfully updated.' }
         format.json { head :ok }
       else
@@ -106,5 +106,17 @@ class Admin::SitesController < ApplicationController
 private
   def set_navigation_ids
     @navigation_ids = [:dashboard, :sites]
+  end
+
+  def create_site_params
+    # :user is overwritten in create, no need to allow it/:user_id for current_user.admin? here
+    params.permit(:site => [ :name, :url, :moderation_method, :akismet_key ])[:site]
+  end
+
+  def update_site_params
+    # current_user.admin? could allow:
+    #   :key, :user - shouldn't be needed
+    #   :user_id - has no ui yet => unused
+    params.permit(:site => [ :name, :url, :moderation_method, :akismet_key ])[:site]
   end
 end

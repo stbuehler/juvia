@@ -1,8 +1,9 @@
 require 'digest/md5'
 
 class User < ActiveRecord::Base
-  has_many :sites, :inverse_of => :user, :order => 'name'
+  has_many :sites, -> { order(:name) }, :inverse_of => :user
   has_many :topics, :through => :sites
+  has_many :comments, -> { order('comments.created_at DESC') }, :through => :topics
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,17 +11,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :timeoutable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :as => :admin
-  
   before_validation :nullify_blank_password_on_update
-  
-  def comments
-    Comment.
-      joins(:topic => { :site => :user }).
-      where(:users => { :id => id }).
-      order('comments.created_at DESC')
-  end
   
   def accessible_comments
     if admin?

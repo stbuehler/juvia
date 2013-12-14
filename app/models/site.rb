@@ -12,10 +12,6 @@ class Site < ActiveRecord::Base
   validates_presence_of :akismet_key, :if => :moderation_method_is_akismet?
 
   before_validation :nullify_blank_fields
-  
-  attr_accessible :name, :url, :moderation_method, :akismet_key
-  attr_accessible :user, :user_id, :name, :key, :url,
-    :moderation_method, :akismet_key, :as => :admin
 
   after_initialize :generate_key
 

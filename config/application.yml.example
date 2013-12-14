@@ -20,5 +20,13 @@ production:
 
   # generate secrets with "rake secret". use different secrets, and keep them *secret* (obviously)
 
-  # set ENV[SECRET_TOKEN] or this:
+  # set ENV[SECRET_KEY_BASE] or here; this is a new "thing" for rails 4.0:
+  # setting this upgrades old cookies to the new rails 4.0 style
+  # secret_key_base: '...'
+
+  # set ENV[SECRET_TOKEN] or this; this is the old rails 3.2 compat setting:
+  # setting this allows reading old rails 3.2 cookies (and generating if secret_key_base is not set)
   # secret_token: '...'
+
+  # set ENV[DEVISE_SECRET] or this:
+  # devise_secret: '...'

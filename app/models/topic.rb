@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   belongs_to :site, :inverse_of => :topics
-  has_many :comments, :order => "created_at DESC", :inverse_of => :topic
+  has_many :comments, -> { order("created_at DESC") }, :inverse_of => :topic
 
   validates_presence_of :key
   validates_presence_of :title
@@ -45,12 +45,14 @@ class Topic < ActiveRecord::Base
 private
   def self.find_by_site_key_and_topic_key(site_key, topic_key)
     Topic.
-      where('sites.key = ? AND topics.key = ?', site_key, topic_key).
       joins(:site).
+      where(:key => topic_key, :sites => { :key => site_key }).
+      readonly(false). # bug. joins shouldn't set readonly, https://github.com/rails/rails/pull/10769, safe to unset again
       first ||
     Topic.
-      where('sites.key = ? AND topics.key = ?', site_key, alt_key(topic_key)).
       joins(:site).
+      where(:key => alt_key(topic_key), :sites => { :key => site_key }).
+      readonly(false).
       first
   end
 end

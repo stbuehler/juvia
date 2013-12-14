@@ -22,7 +22,7 @@ class Admin::DashboardController < ApplicationController
   end
   
   def create_admin
-    @user = User.new(params[:user])
+    @user = User.new(create_first_user_params)
     @user.admin = true
     if @user.save
       sign_in(@user)
@@ -37,7 +37,7 @@ class Admin::DashboardController < ApplicationController
   end
   
   def create_site
-    @site = Site.new(params[:site])
+    @site = Site.new(create_site_params)
     @site.user = current_user
     if @site.save
       redirect_to created_admin_site_path(@site)
@@ -55,5 +55,14 @@ private
   
   def set_navigation_ids
     @navigation_ids = [:dashboard]
+  end
+
+  def create_first_user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :remember_me)
+  end
+
+  def create_site_params
+    # :user is overwritten in create, no need to allow it/:user_id for current_user.admin? here
+    params.require(:site).permit(:name, :url, :moderation_method, :akismet_key)
   end
 end

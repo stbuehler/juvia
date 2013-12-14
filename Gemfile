@@ -1,19 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.1.12'
+gem "rails", "~> 4.0.2"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'schema_plus'
 gem 'bluecloth'
-gem 'devise', '~> 1.5.0'
-gem 'jquery-rails', '>= 1.0.12'
-gem 'will_paginate', '~> 3.0.pre4'
+gem 'devise', '~> 3.2.2'
+gem 'jquery-rails', '~> 3.0.4'
+gem 'will_paginate', '~> 3.0.5'
 gem 'css3buttons'
 gem 'cancan', '~> 1.6.10'
 gem 'inherited_resources'
-gem 'rack', '~> 1.3.10' # fix Rack vulnerability
 gem 'nokogiri'
 gem 'settingslogic', '~> 2.0.9'
 
@@ -46,18 +45,19 @@ group :development, :test do
   gem 'capybara', :require => false
   gem 'capybara-webkit', :require => false
   gem 'database_cleaner', :require => false
-  gem 'factory_girl_rails', :require => false
+  gem 'factory_girl_rails', "~> 4.0", :require => false
   gem 'launchy', :require => false
   gem 'spork', '0.9.0.rc9', :require => false
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+# Use SCSS for stylesheets
+gem "sass-rails", "~> 4.0.1"
+
+# Use CoffeeScript for .js.coffee assets and views
+gem "coffee-rails", "~> 4.0.1"
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 2.3.3'
 
 group :mysql do
   # adapter: mysql2

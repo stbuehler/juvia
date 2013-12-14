@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def create
     authorize! :create, User
-    @user = User.new(params[:user], :as => current_user.role)
+    @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
 
     respond_to do |format|
-      if @user.update_attributes(params[:user], :as => current_user.role)
+      if @user.update_attributes(user_params)
         format.html { redirect_to(admin_users_path, :notice => 'User was successfully updated.') }
         format.json { head :ok }
       else
@@ -90,6 +90,14 @@ class UsersController < ApplicationController
 private
   def set_navigation_ids
     @navigation_ids = [:dashboard, :users]
+  end
+
+  def user_params
+    if current_user.admin?
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :admin)
+    else
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me)
+    end
   end
 end
 

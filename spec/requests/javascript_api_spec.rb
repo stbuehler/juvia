@@ -203,7 +203,7 @@ describe "Javascript API", "error handling" do
   describe "add_comment" do
     it "returns an error if a required parameter is blank" do
       post '/api/add_comment.js', :site_key => ''
-      response.body.should include("The required parameter <code>site_key</code> wasn't given")
+      response.body.should include("The required parameter \\u003Ccode\\u003Esite_key\\u003C/code\\u003E wasn't given")
     end
   end
 end
