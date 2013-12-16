@@ -17,3 +17,8 @@ production:
   base_url: http://juvia.yoursite.com
   from: juvia@yoursite.com
   email_method: sendmail
+
+  # generate secrets with "rake secret". use different secrets, and keep them *secret* (obviously)
+
+  # set ENV[SECRET_TOKEN] or this:
+  # secret_token: '...'
