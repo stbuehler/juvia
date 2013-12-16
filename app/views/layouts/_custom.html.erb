@@ -70,6 +70,17 @@
   </div>
 </header>
 
+<% if flash[:error] || flash[:alert] %>
+<div id="flash" class="container">
+  <div class="row">
+    <div class="col_12 clearleft omega">
+<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+    </div>
+  </div>
+</div>
+<% end %>
+
 <div id="container">
   <%= yield %>
 </div>
