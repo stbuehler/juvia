@@ -6,7 +6,6 @@ gem 'rails', '3.1.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'schema_plus'
-gem 'default_value_for'
 gem 'bluecloth'
 gem 'devise', '~> 1.5.0'
 gem 'jquery-rails', '>= 1.0.12'

@@ -16,8 +16,8 @@ class Site < ActiveRecord::Base
   attr_accessible :name, :url, :moderation_method, :akismet_key
   attr_accessible :user, :user_id, :name, :key, :url,
     :moderation_method, :akismet_key, :as => :admin
-  
-  default_value_for(:key) { SecureRandom.hex(20).to_i(16).to_s(36) }
+
+  after_initialize :generate_key
 
   def public_topics_info
     result = []
@@ -54,5 +54,9 @@ private
 
   def moderation_method_is_akismet?
     moderation_method == :akismet
+  end
+
+  def generate_key
+    self.key ||= SecureRandom.hex(20).to_i(16).to_s(36)
   end
 end
