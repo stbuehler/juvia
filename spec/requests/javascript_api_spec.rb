@@ -52,9 +52,9 @@ shared_examples "posting new comments with the Javascript API" do
     fill_in 'author_email', :with => 'kotori@kotori.jp'
     fill_in 'content', :with => 'a *new* comment!'
     click_button 'Submit'
-    page.should have_css('input[name=author_name]', :value => '')
-    page.should have_css('input[name=author_email]', :value => '')
-    page.should have_css('textarea', :value => '')
+    page.should have_css('input[name=author_name]', :text => '')
+    page.should have_css('input[name=author_email]', :text => '')
+    page.should have_css('textarea', :text => '')
   end
   
   it "hides the preview box after posting", :js => true do

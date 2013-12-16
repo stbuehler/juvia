@@ -33,7 +33,7 @@ describe "Admin::Dashboard" do
       user = User.first
       user.email.should == 'a@a.com'
       user.should be_admin
-      page.should have_css("#debug .current_user", :text => user.id.to_s)
+      page.should have_css("nav a[href$='/admin/users/#{user.id}/edit']", :text => user.email)
       page.should have_content("So you want to embed comments on a bunch of web pages")
     end
     

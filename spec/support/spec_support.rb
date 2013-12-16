@@ -8,8 +8,8 @@ module SpecSupport
     elsif example.metadata[:type] == :view
       @ability = Ability.new(user)
       assign(:current_ability, @ability)
-      controller.stub(:current_user, user)
-      view.stub(:current_user, user)
+      controller.stub(:current_user => user)
+      view.stub(:current_user => user)
     else
       raise "Test type #{example.metadata[:type].inspect} not supported"
     end
