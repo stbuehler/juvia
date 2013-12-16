@@ -1,21 +1,21 @@
 FactoryGirl.define do
   factory :admin, :class => User do
     email 'admin@admin.com'
-    password 123456
-    password_confirmation 123456
+    password 12345678
+    password_confirmation 12345678
     admin true
   end
   
   factory :kotori, :class => User do
     email 'kotori@kotori.jp'
-    password 123456
-    password_confirmation 123456
+    password 12345678
+    password_confirmation 12345678
   end
   
   factory :morishima, :class => User do
     email 'morishima@morishima.jp'
-    password 123456
-    password_confirmation 123456
+    password 12345678
+    password_confirmation 12345678
   end
   
   factory :hatsuneshima, :class => Site do

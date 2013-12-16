@@ -29,8 +29,8 @@ describe Admin::DashboardController do
     def visit_normally
       put :create_admin, :user => {
         :email => 'a@a.com',
-        :password => '123456',
-        :password_confirmation => '123456'
+        :password => '12345678',
+        :password_confirmation => '12345678'
       }
     end
 

@@ -9,16 +9,16 @@
 if Rails.env.development?
   user = User.create!({
       :email => 'a@a.com',
-      :password => '123456',
-      :password_confirmation => '123456',
+      :password => '12345678',
+      :password_confirmation => '12345678',
       :admin => true
-    }, :as => :admin)
+    })
   site = user.sites.create!({
       :key => 'testkey',
       :name => 'Test Site',
       :url => 'http://test',
       :user => user
-    }, :as => :admin)
+    })
   site.update_attribute(:key, 'testkey')
   topic = site.topics.create!(:key => 'testtopic', :title => 'Test Topic', :url => 'http://test/testtopic')
   topic.comments.create!(:content => 'hello world',
@@ -26,10 +26,10 @@ if Rails.env.development?
     :author_user_agent => 'Firefox',
     :referer => 'http://www.google.com')
 else
-  User.create!({
+  User.create({
     :email => 'admin@localhost',
     :password => 'admin',
     :password_confirmation => 'admin',
     :admin => true
-  }, :as => :admin)
+  }).save(validate: false) # ignore password length requirement
 end

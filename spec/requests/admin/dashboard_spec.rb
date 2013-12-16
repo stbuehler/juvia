@@ -27,8 +27,8 @@ describe "Admin::Dashboard" do
     it "creates the account, logs in the user and asks the user to setup a site" do
       visit root_path
       fill_in 'Email', :with => 'a@a.com'
-      fill_in 'Password', :with => '123456'
-      fill_in 'Confirm password', :with => '123456'
+      fill_in 'Password', :with => '12345678'
+      fill_in 'Confirm password', :with => '12345678'
       click_button 'Create account & login'
       user = User.first
       user.email.should == 'a@a.com'
